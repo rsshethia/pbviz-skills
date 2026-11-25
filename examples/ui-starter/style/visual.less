@@ -1,0 +1,23 @@
+// Scoped styles: everything lives under classes created in visual.ts.
+.pbiviz-root,
+svg.bar-chart {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  .bar {
+    transition: opacity 120ms ease;
+
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+      outline: 2px solid currentColor; // override with a theme/foreground color at runtime if needed
+    }
+  }
+
+  .empty-state {
+    fill: #767676; // replace with a theme/foreground color from colorPalette at runtime
+    font-size: 12px;
+  }
+}
