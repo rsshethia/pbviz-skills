@@ -5,6 +5,8 @@ description: "Use when the user wants to create, build, debug, test, package, ce
 
 # Power BI Custom Visuals
 
+Install with `git clone https://github.com/rsshethia/pbviz-skills.git` then `.\install.ps1` (or `./install.sh`). See `README.md`. This follows the open Agent Skills `SKILL.md` format and works in Claude Code, ChatGPT/Codex, Cursor, and similar agents.
+
 A Power BI custom visual is a sandboxed TypeScript/JavaScript component that runs inside an iframe in Power BI, receives data as a `DataView` from the host, renders into a DOM element, and talks back to the host through services exposed on `IVisualHost`. The whole project is generated and packaged by the `pbiviz` CLI (`powerbi-visuals-tools`) and its API contracts come from `powerbi-visuals-api`.
 
 ## When to use this skill

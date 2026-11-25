@@ -1,69 +1,123 @@
-# Power BI Visuals — Skill Notes
+# Power BI Visuals Skill
 
-## What is this?
+A small pack of notes that teaches an AI how to build **custom visuals for Power BI**. It works with any AI that understands `SKILL.md` files (Claude Code, ChatGPT/Codex, Cursor, and similar agents).
 
-This folder is a simple guide for building **custom visuals for Power BI**.
+Repo: <https://github.com/rsshethia/pbviz-skills>
 
-A custom visual is your own chart or control that you add to a Power BI report. Instead of using only the charts that come with Power BI, you can build one that looks and works the way you want.
+---
 
-Think of this folder as a **cheat sheet for an AI helper**. If you ask an AI to build a Power BI visual, it can read these notes and know what to do.
+## Install in 30 seconds
 
-## Who is it for?
+### Claude Code (most common)
 
-- People building their first Power BI custom visual.
-- Developers who want a clear checklist instead of reading hundreds of web pages.
-- Anyone using an AI assistant to help with Power BI visuals.
+Personal — works in every project:
 
-## What is inside?
+```powershell
+git clone https://github.com/rsshethia/pbviz-skills.git
+cd pbviz-skills
+.\install.ps1
+```
+
+Project — works only in the current folder:
+
+```powershell
+.\install.ps1 -Target claude-project
+```
+
+On macOS/Linux:
+
+```bash
+git clone https://github.com/rsshethia/pbviz-skills.git
+cd pbviz-skills
+chmod +x install.sh
+./install.sh            # or: ./install.sh claude-project
+```
+
+Then **restart your AI tool**.
+
+### Any other agent (ChatGPT, Codex, Cursor, Windsurf, etc.)
+
+These tools use the same simple format: a folder with a `SKILL.md` file.
+
+```powershell
+.\install.ps1 -Target custom -Path "C:\path\to\your\skills\powerbi-visuals"
+```
+
+or just copy this whole folder into your agent's skills folder and remove the `.git` folder.
+
+- OpenAI Codex / ChatGPT skills guide: <https://developers.openai.com/codex/build-skills>
+- Cursor skills: <https://docs.cursor.com/docs/skills>
+
+### No install at all
+
+Download the ZIP from <https://github.com/rsshethia/pbviz-skills>, unzip it, and tell your AI:
+
+> Read `SKILL.md` in this folder and help me build a Power BI custom visual.
+
+You can also upload `SKILL.md` and the `references/` files into a ChatGPT project or custom GPT's knowledge.
+
+---
+
+## Check that it works
+
+Ask your AI:
+
+> I want a bar chart custom visual with colors from the report theme. What should I do?
+
+It should mention `pbiviz`, `capabilities.json`, `dataRoles`, `IVisual.update`, and `host.colorPalette`.
+
+---
+
+## What is inside (kept simple on purpose)
+
+| Path | What it is |
+| --- | --- |
+| `SKILL.md` | The short entry point. AI reads this first. |
+| `AGENTS.md` | A tiny pointer for agents that use AGENTS.md. |
+| `references/` | The detailed notes (UI, data, color, publishing, etc.). |
+| `examples/` | Copyable starter files. |
+| `install.ps1`, `install.sh` | One-command installers. |
+
+### Notes in `references/`
 
 | File | Plain-English description |
 | --- | --- |
-| `SKILL.md` | The main guide. A short summary plus links to the detailed notes. |
-| `references/setup-and-project-structure.md` | How to install the tools and what each file in a new project does. |
-| `references/capabilities-and-data-binding.md` | How to tell Power BI what data your visual needs. |
-| `references/visual-api-lifecycle.md` | The four main functions every visual needs and when Power BI calls them. |
-| `references/interactions-and-features.md` | Clicking, hovering, right-clicking, tooltips, drill-down, and loading lots of data. |
-| `references/styling-localization-accessibility.md` | Colors, languages, keyboard use, and high-contrast mode. |
-| `references/debugging-testing-validation.md` | How to find and fix problems while building. |
-| `references/packaging-publishing-certification.md` | How to turn your work into a file, share it, and get it approved. |
-| `references/reference-map-and-pitfalls.md` | Useful links, word definitions, and common mistakes to avoid. |
-| `references/ui-reference-gallery.md` | Real Microsoft visual examples to copy UI ideas from, with pictures. |
-| `references/ui-theming-and-color.md` | Making colors match the report theme and stay readable. |
-| `references/ui-frameworks-and-charting.md` | Choosing between plain code, React, and chart libraries. |
-| `references/ui-responsive-and-performance.md` | Making the visual look good at any size and stay fast. |
-| `references/ui-accessibility-checklist.md` | Making the visual usable with a keyboard and by everyone. |
-| `examples/ui-starter/` | A small starter you can copy and edit instead of starting from zero. |
-| `references/data-visualization-principles.md` | How to choose the right chart and show data honestly (the "experience" layer). |
-| `references/ai-agent-library-playbook.md` | Which libraries and official sources an AI should trust, and what to avoid. |
-| `references/data-binding-principles.md` | How to think about the data contract, identity, settings, and honest data limits. |
-| `references/data-binding-patterns.md` | Ready-to-adapt code for reading each kind of data Power BI sends. |
-| `examples/data-binding/` | A copyable view-model file that keeps data code separate from drawing code. |
-| `references/future-and-decision-design.md` | Making visuals help people decide, use color well, and work on any screen size. |
+| `setup-and-project-structure.md` | Installing tools and what each project file does. |
+| `capabilities-and-data-binding.md` | Telling Power BI what data the visual needs. |
+| `visual-api-lifecycle.md` | The four functions every visual has. |
+| `interactions-and-features.md` | Clicks, tooltips, menus, drill-down, big datasets. |
+| `styling-localization-accessibility.md` | Colors, languages, keyboards, high contrast. |
+| `debugging-testing-validation.md` | Finding and fixing problems. |
+| `packaging-publishing-certification.md` | Building the file and getting it approved. |
+| `reference-map-and-pitfalls.md` | Links, definitions, common mistakes. |
+| `ui-reference-gallery.md` | Real Microsoft visuals to copy UI ideas from. |
+| `ui-theming-and-color.md` | Making colors match the report theme. |
+| `ui-frameworks-and-charting.md` | Choosing plain code, React, or a chart library. |
+| `ui-responsive-and-performance.md` | Looking good at any size and staying fast. |
+| `ui-accessibility-checklist.md` | Usable by keyboard and by everyone. |
+| `data-visualization-principles.md` | Choosing the right chart and showing data honestly. |
+| `data-binding-principles.md` | Thinking about the data contract and identity. |
+| `data-binding-patterns.md` | Ready-to-adapt code for reading Power BI data. |
+| `future-and-decision-design.md` | Helping people decide, color, and multiple screen sizes. |
+| `ai-agent-library-playbook.md` | Which libraries and sources an AI should trust. |
 
-## How to use it
+Starters: `examples/ui-starter/` (a simple chart) and `examples/data-binding/` (a view-model file).
 
-1. Start with `SKILL.md`.
-2. Pick the detailed note that matches what you are doing.
-3. If you are working on how the visual **looks or feels**, start with the five `ui-...` notes and the starter in `examples/ui-starter/`.
-4. Follow the examples and check the links for the full official documentation.
+---
 
-## The short version of building a visual
+## Update or remove
 
-1. Install the tool: `npm install -g powerbi-visuals-tools`
-2. Create a project: `pbiviz new myVisual`
-3. Write your visual in `src/visual.ts`.
-4. Describe your data in `capabilities.json`.
-5. Test it in Power BI Desktop using the Developer visual.
-6. Build the final file: `pbiviz package`
-7. Share it or publish it to AppSource.
+```powershell
+git pull
+.\install.ps1         # copies the new files over the old ones
+```
+
+To remove: delete the installed `powerbi-visuals` folder from your skills directory.
+
+---
 
 ## Where the information came from
 
-The notes are based on the official Microsoft Power BI documentation:
+Official Microsoft docs: <https://learn.microsoft.com/en-us/power-bi/developer/visuals/>
 
-- <https://learn.microsoft.com/en-us/power-bi/developer/visuals/visual-project-structure>
-- <https://learn.microsoft.com/en-us/power-bi/developer/visuals/guidelines-powerbi-visuals>
-
-An older community repository was also used as a topic list: <https://github.com/PowerBi-Projects/PowerBI-visuals>. It is now deprecated, so the Microsoft docs are the source of truth.
-
-This project lives at <https://github.com/rsshethia/pbviz-skills>.
+The older community repo <https://github.com/PowerBi-Projects/PowerBI-visuals> is deprecated; Microsoft docs are the source of truth.
