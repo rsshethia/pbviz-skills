@@ -67,6 +67,7 @@ You still must make elements focusable and labeled (`tabindex="0"`, `role`, `ari
 
 Run this in order and record pass/fail with a one-line note:
 
+0. **Question & integrity pass** — does the chart answer a stated question? Check encoding choice, zero baselines, no dual axis, no 3D, honest handling of nulls and sampling. See [data-visualization-principles.md](data-visualization-principles.md).
 1. **Visuals-first pass** — open the visual at normal size, small size, and Focus mode. Screenshot each.
 2. **Theme pass** — switch report theme; confirm colors/fonts follow. Switch high-contrast; confirm the four-color rule.
 3. **Keyboard pass** — unplug the mouse. Tab through, Enter/Space, Esc. Confirm visible focus and no trap.

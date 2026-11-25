@@ -61,11 +61,14 @@ Read the relevant reference before acting. Each file is self-contained and inclu
 | [ui-frameworks-and-charting.md](references/ui-frameworks-and-charting.md) | d3 vs React vs chart libraries vs canvas/WebGL, and certification constraints on UI dependencies |
 | [ui-responsive-and-performance.md](references/ui-responsive-and-performance.md) | Resize bit flags, mobile/touch equivalents, Focus mode, rendering performance |
 | [ui-accessibility-checklist.md](references/ui-accessibility-checklist.md) | WCAG contrast, keyboard/focus, screen readers, reduced motion, states, 10-step audit |
+| [data-visualization-principles.md](references/data-visualization-principles.md) | Chart selection, perceptual encoding, graphical integrity, honest data reduction, context |
+| [ai-agent-library-playbook.md](references/ai-agent-library-playbook.md) | Evidence hierarchy, verified package names, d3/React choices, and a self-verification loop for LLMs |
 
 Copyable starting point: [examples/ui-starter/](examples/ui-starter/README.md) — SVG bar chart skeleton with theming, selection, tooltip, context menu, keyboard focus, and resize-aware updates.
 
 ## Workflow at a glance
 
+0. **Principles gate** — before choosing a chart type, identify the reader's question and the encoding that answers it. Apply [data-visualization-principles.md](references/data-visualization-principles.md): position over angle/area, honest baselines, disclosed data reduction, color used sparingly, context for every value.
 1. **Confirm the API version** in `pbiviz.json` before using a version-gated feature.
 2. **Declare** data roles, mappings, objects, and feature flags in `capabilities.json`.
 3. **Implement** the `IVisual` class: create DOM once in the constructor, re-render from `options.dataViews[0]` in `update`, clean up in `destroy`.

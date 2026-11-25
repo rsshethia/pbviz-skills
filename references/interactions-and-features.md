@@ -27,7 +27,7 @@ Enable `supportsHighlight: true` in `capabilities.json` and read `values[i].high
 
 ## Filter API
 
-`host.applyJsonFilter(filter, dataRole, action)` applies filters back to the report. Use `powerbi.data.create` helpers (or `powerbi-visuals-utils-interactivity`) to build filters, and respect `options.jsonFilters` to reflect filters created elsewhere.
+`host.applyJsonFilter(filter, objectName, propertyName, action)` applies filters back to the report (the signature is `(filter: IFilter[] | IFilter, objectName: string, propertyName: string, action: FilterAction)`). Build `IFilter` objects per the [Filter API](https://learn.microsoft.com/en-us/power-bi/developer/visuals/filter-api), and respect `options.jsonFilters` to reflect filters created elsewhere.
 
 Never keep a separate, private copy of filter state that conflicts with `options.jsonFilters` — the host is the source of truth.
 

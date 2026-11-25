@@ -15,11 +15,11 @@ There is no official "Fluent UI for custom visual content" design system. The Fo
 
 ## Official building blocks
 
-- `powerbi-visuals-utils-formatting-model` — build Format pane models. Recommended over hand-writing them.
+- `powerbi-visuals-utils-formattingmodel` — build Format pane models. Recommended over hand-writing them.
 - `powerbi-visuals-utils-colorutils` — theme/high-contrast colors, `ColorHelper`.
 - `powerbi-visuals-utils-chartutils` — axis tick counts, label margins, scales, `getRecommendedNumberOfTicksForXAxis/YAxis`, `getTickLabelMargins`.
 - `powerbi-visuals-utils-svgutils` — `createClassAndSelector`, `manipulation.translate`, `Rect` helpers.
-- `powerbi-visuals-utils-formatting` — text measurement (`TextMeasurementService`), value formatting.
+- `powerbi-visuals-utils-formattingutils` — text measurement (`TextMeasurementService`), value formatting.
 - `powerbi-visuals-utils-tooltiputils` — tooltip wrapper.
 - `powerbi-visuals-utils-interactivityutils` — selection behavior.
 - `powerbi-visuals-utils-dataviewutils` — safe `DataView` object reads.

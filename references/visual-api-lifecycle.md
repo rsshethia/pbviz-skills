@@ -143,7 +143,7 @@ Use `powerbi.visuals.FormattingComponent` for control types (e.g. `ColorPicker`,
 | `selectionId.getSelector()` | The specific data point |
 | `{ data: <DataViewScopeIdentity[]>identities }` | Intersection of group values |
 
-The `powerbi-visuals-utils-formatting-model` package simplifies constructing models and reading values.
+The `powerbi-visuals-utils-formattingmodel` package simplifies constructing models and reading values.
 
 ## Legacy objects (`enumerateObjectInstances`, deprecated from 5.1)
 

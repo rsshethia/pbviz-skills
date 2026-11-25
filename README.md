@@ -33,6 +33,8 @@ Think of this folder as a **cheat sheet for an AI helper**. If you ask an AI to 
 | `references/ui-responsive-and-performance.md` | Making the visual look good at any size and stay fast. |
 | `references/ui-accessibility-checklist.md` | Making the visual usable with a keyboard and by everyone. |
 | `examples/ui-starter/` | A small starter you can copy and edit instead of starting from zero. |
+| `references/data-visualization-principles.md` | How to choose the right chart and show data honestly (the "experience" layer). |
+| `references/ai-agent-library-playbook.md` | Which libraries and official sources an AI should trust, and what to avoid. |
 
 ## How to use it
 
