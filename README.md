@@ -1,92 +1,115 @@
 # Power BI Visuals Skill
 
-**A ready-to-install guide that teaches any AI agent how to build, debug, and publish Power BI custom visuals.** It uses the open Agent Skills format (`SKILL.md`), so it works in Claude Code, ChatGPT/Codex, Cursor, and similar tools.
+**A ready-to-install Agent Skill that teaches any AI to build, debug, bind data for, style, and publish Power BI custom visuals.** It works with Claude Code, ChatGPT/Codex, Cursor, Windsurf, and any agent that supports the [Agent Skills spec](https://agentskills.io/specification.md).
 
-Repo: <https://github.com/rsshethia/pbviz-skills> · Last updated: 2026-11-25
+Repo: <https://github.com/rsshethia/pbviz-skills> · License: MIT · Last updated: 2026-11-25
 
 ---
 
 ## What you get
 
-- **Fewer wrong answers.** The skill tells the agent to verify API names against `powerbi-visuals-api` and Microsoft Learn instead of guessing.
-- **Working structure.** It knows the project files, `capabilities.json`, the `IVisual` lifecycle, and how to bind data — the parts agents most often get wrong.
-- **Better visuals.** Built-in guidance on theming, color, accessibility, honest data reduction, and decision-oriented design.
-- **One-command install.** Clone, run one script, restart your agent.
+- **Fewer wrong answers.** It tells the agent to verify API names against `powerbi-visuals-api` and check `apiVersion` before using a version-gated feature.
+- **The full workflow.** Project setup, `capabilities.json`, data binding, `IVisual` lifecycle, formatting model, interactions, accessibility, publishing.
+- **Judgment, not just mechanics.** Chart choice, honest data reduction, color that adds value, and how to make a visual decision-ready at any screen size.
+- **18 reference notes and two copyable skeletons** the agent opens only when needed.
 
 ---
 
-## Install the skill in 30 seconds
+## Install
 
-| Method | Best for | Command |
-| --- | --- | --- |
-| Claude Code personal | Every project | `.\install.ps1` |
-| Claude Code project | One project only | `.\install.ps1 -Target claude-project` |
-| Any other agent | Codex, ChatGPT, Cursor, Windsurf | `.\install.ps1 -Target custom -Path "...\skills\powerbi-visuals"` |
-| No install | Just reading or uploading files | Download the ZIP and read `SKILL.md` |
+### 1. CLI — one command (recommended)
 
-### Claude Code
-
-Personal — works in every project:
-
-```powershell
-git clone https://github.com/rsshethia/pbviz-skills.git
-cd pbviz-skills
-.\install.ps1
+```bash
+npx skills add rsshethia/pbviz-skills
 ```
 
-Project — works only in the current folder:
+The CLI detects your agents and asks where to install. Claude Code gets `.claude/skills/`; universal agents share `.agents/skills/`.
 
-```powershell
-.\install.ps1 -Target claude-project
+> If you run this from inside an agent session, it may install only to `.agents/skills/`, which Claude Code does not read. Pass the agent explicitly: `npx skills add rsshethia/pbviz-skills -a claude-code`.
+
+Multi-agent alternative:
+
+```bash
+npx skillkit install rsshethia/pbviz-skills
 ```
 
-On macOS/Linux:
+### 2. Claude Code plugin
+
+```bash
+/plugin marketplace add rsshethia/pbviz-skills
+/plugin install powerbi-visuals@pbviz-skills
+```
+
+`/plugin` works in an interactive Claude Code CLI session. In non-interactive environments use:
+
+```bash
+claude plugin marketplace add rsshethia/pbviz-skills
+claude plugin install powerbi-visuals@pbviz-skills
+```
+
+### 3. OpenAI Codex plugin
+
+```bash
+codex plugin marketplace add rsshethia/pbviz-skills
+```
+
+Then open `/plugins` inside a Codex session and select **powerbi-visuals**.
+
+### 4. Clone and copy (any agent)
 
 ```bash
 git clone https://github.com/rsshethia/pbviz-skills.git
-cd pbviz-skills
-chmod +x install.sh
-./install.sh            # or: ./install.sh claude-project
+cp -r pbviz-skills/skills/powerbi-visuals .agents/skills/
 ```
 
-Then **restart your AI tool**.
+The folder name must stay `powerbi-visuals` — it matches `name` in the frontmatter.
 
-### Other agents
+### 5. Our installers
 
 ```powershell
-.\install.ps1 -Target custom -Path "C:\path\to\your\skills\powerbi-visuals"
+git clone https://github.com/rsshethia/pbviz-skills.git
+cd pbviz-skills
+.\install.ps1                          # ~/.claude/skills/powerbi-visuals
+.\install.ps1 -Target claude-project   # ./.claude/skills/powerbi-visuals
+.\install.ps1 -Target agents-project   # ./.agents/skills/powerbi-visuals
 ```
 
-Or copy the whole folder into your agent's skills directory and delete `.git`.
+macOS/Linux:
 
-- OpenAI Codex / ChatGPT skills: <https://developers.openai.com/codex/build-skills>
-- Cursor skills: <https://docs.cursor.com/docs/skills>
+```bash
+./install.sh                    # or: ./install.sh agents-project
+```
 
-### No install
+Then **restart your agent**.
 
-Download the ZIP from <https://github.com/rsshethia/pbviz-skills>, unzip it, and ask your AI:
+### 6. No install
 
-> Read `SKILL.md` in this folder and help me build a Power BI custom visual.
-
-You can also upload `SKILL.md` and `references/` into a ChatGPT project or custom GPT knowledge.
+Download the ZIP, unzip it, and ask your AI to read `skills/powerbi-visuals/SKILL.md`. You can also upload that folder's `SKILL.md` and `references/` into a ChatGPT project or custom GPT knowledge base.
 
 ---
 
-## Example prompts
+## Usage
 
-| Ask your agent | What the skill makes it do |
-| --- | --- |
-| "Build a bar chart custom visual with theme colors." | Scaffold with `pbiviz`, declare `dataRoles` + `categorical` mapping, read colors from `host.colorPalette`, wire tooltips and selection. |
-| "My visual is blank. Why?" | Check `capabilities.json`, guard `options.dataViews[0]`, inspect the actual `DataView` shape, look for null values. |
-| "How do I show variance against a target?" | Use a bullet-style layout, read the target from an object property, show direction and gap size, label the baseline. |
-| "Make it work on mobile." | Handle touch events, use `options.viewport`, hide legends at small sizes, test Focus mode portrait and landscape. |
-| "Get my visual certified." | Run the certification audit, remove `fetch`/`innerHTML`, add context menu and rendering events, prepare AppSource assets. |
+Just ask:
 
-### What an example run looks like
+```
+"Build a bar chart custom visual with colors from the report theme"
+→ uses powerbi-visuals
 
-You ask: *"Build a simple category bar chart with theme colors."*
+"Why is my visual blank?"
+→ uses powerbi-visuals
 
-The agent should produce the same contract every time:
+"Publish my visual to AppSource and get it certified"
+→ uses powerbi-visuals
+```
+
+You can also invoke it directly with `/powerbi-visuals`, or say "use the powerbi-visuals skill".
+
+### Example run
+
+Ask: *"Build a simple category bar chart with theme colors."*
+
+The skill produces the contract first:
 
 ```jsonc
 // capabilities.json (excerpt)
@@ -103,100 +126,43 @@ The agent should produce the same contract every time:
 }]
 ```
 
-```typescript
-// visual.ts (excerpt)
-public update(options: VisualUpdateOptions): void {
-  const dv = options.dataViews && options.dataViews[0];
-  if (!dv || !dv.categorical) { return; }
-  const categories = dv.categorical.categories[0];
-  const values = dv.categorical.values[0];
-  const points = categories.values.map((label, i) => ({
-    label: String(label),
-    value: Number(values.values[i]),
-    selectionId: this.host.createSelectionIdBuilder()
-      .withCategory(categories, i).createSelectionId()
-  }));
-  this.render(points, options.viewport);
-}
-```
-
-A weak agent skips `privileges`, hard-codes colors, and assumes `dataViews[0]` exists. This skill prevents all three.
+Then the `IVisual` implementation, with guarded `dataViews[0]`, selection IDs, and colors from `host.colorPalette`. A weak agent skips `privileges`, hard-codes colors, and assumes data always exists — this skill prevents all three.
 
 ---
 
-## How agents use it
+## How the agent uses it
 
-The skill uses **progressive disclosure**, so it stays quiet until needed:
+1. It sees only `name` + `description` first. The description names the questions: *why is the visual blank, which mapping should I use, will it pass certification*.
+2. On a match it loads `SKILL.md`, states the situation, and follows the workflow.
+3. A **Question → Reference** table routes it to the one note it needs. It reads bundled files from the installed directory, not a remote URL.
+4. `examples/` files are skeletons to adapt, not finished code.
 
-1. **Discovery** — the agent sees only `name` and `description` from `SKILL.md`. Triggers include *custom visual, pbiviz, Power BI visual, capabilities.json, dataView, AppSource visual*.
-2. **Loading** — on a match, it loads the full `SKILL.md`. Force it with *"Use the powerbi-visuals skill"* or `/powerbi-visuals` where slash commands exist.
-3. **Work** — it follows the workflow and opens only the `references/` files needed for your task. `examples/` files are skeletons, not finished code.
-4. **Sources** — it checks Microsoft Learn for APIs and version-gated features.
-
-Keep the installed folder intact: `SKILL.md` uses relative links to `references/` and `examples/`.
-
-### Skill format
-
-A valid skill folder is simply:
-
-```
-powerbi-visuals/
-├── SKILL.md          # required: name + description frontmatter, then instructions
-└── references/ ...   # optional supporting files
-```
-
-This repo's frontmatter:
-
-```yaml
----
-name: powerbi-visuals
-description: "Use when the user wants to create, build, debug, test, package, certify, or publish a Power BI custom visual ..."
----
-```
-
-The folder name matches `name`. The installers handle that for you.
+Keep the folder intact: `SKILL.md` uses relative links to `references/` and `examples/`.
 
 ---
 
-## Check that the skill loaded
+## Repository layout
 
-Ask:
-
-> I want a bar chart custom visual with colors from the report theme. What should I do?
-
-A working install mentions `pbiviz`, `capabilities.json`, `dataRoles`, `IVisual.update`, and `host.colorPalette`.
-
-Verify the frontmatter:
-
-```powershell
-Get-Content "$HOME\.claude\skills\powerbi-visuals\SKILL.md" -TotalCount 4
 ```
-
-### FAQ
-
-**Why isn't the skill listed?** Restart the agent and check that the file is at `<skills-dir>/powerbi-visuals/SKILL.md`.
-
-**Why doesn't the folder name matter?** It does — it must match `name: powerbi-visuals`. Rename it if needed.
-
-**What if links to references fail?** Keep `references/` and `examples/` beside `SKILL.md`; do not copy the entry file alone.
-
-**Can ChatGPT use it?** Yes. Add the folder to your agent's skills directory, or upload `SKILL.md` and `references/` into a ChatGPT project or custom GPT knowledge base.
-
----
-
-## What is inside
-
-| Path | What it is |
-| --- | --- |
-| `SKILL.md` | The short entry point the agent reads first. |
-| `AGENTS.md` | A pointer for agents that use AGENTS.md. |
-| `references/` | Detailed notes: UI, data, color, publishing. |
-| `examples/` | Copyable starter files. |
-| `install.ps1`, `install.sh` | One-command installers. |
+pbviz-skills/
+├── skills/powerbi-visuals/
+│   ├── SKILL.md                  # entry point
+│   ├── references/               # 18 detailed notes
+│   ├── examples/                 # ui-starter + data-binding skeletons
+│   └── evals/triggers/prompts.json
+├── .claude-plugin/               # Claude Code plugin + marketplace
+├── .codex-plugin/                # Codex plugin
+├── scripts/validate.mjs          # no-dependency validation
+├── install.ps1 / install.sh
+├── AGENTS.md
+├── VERSIONS.md
+├── LICENSE
+└── README.md
+```
 
 ### Reference notes
 
-| File | What it covers |
+| File | Covers |
 | --- | --- |
 | `setup-and-project-structure.md` | Tools and every project file. |
 | `capabilities-and-data-binding.md` | Declaring data for the visual. |
@@ -217,31 +183,39 @@ Get-Content "$HOME\.claude\skills\powerbi-visuals\SKILL.md" -TotalCount 4
 | `future-and-decision-design.md` | Decisions, color, multiple screens. |
 | `ai-agent-library-playbook.md` | Libraries and sources an AI should trust. |
 
-Starters: `examples/ui-starter/` (chart) and `examples/data-binding/` (view model).
-
 ---
 
-## Concrete details the skill encodes
+## Check it works
 
-| Detail | Value | Source |
-| --- | --- | --- |
-| Visual icon | PNG, 20 × 20 px | [Project structure](https://learn.microsoft.com/en-us/power-bi/developer/visuals/visual-project-structure) |
-| Marketplace logo | PNG, 300 × 300 px | [Publishing](https://learn.microsoft.com/en-us/power-bi/developer/visuals/office-store) |
-| `privileges` required | API 4.6.0+ | [Capabilities](https://learn.microsoft.com/en-us/power-bi/developer/visuals/capabilities) |
-| Formatting model `getFormattingModel` | API 5.1+ | [Visual API](https://learn.microsoft.com/en-us/power-bi/developer/visuals/visual-api) |
-| Default data limit | 1,000 rows (top reduction) | [Data view mappings](https://learn.microsoft.com/en-us/power-bi/developer/visuals/dataview-mappings) |
-| Text contrast target | 4.5:1 (WCAG AA) | [WCAG](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) |
+Ask: *"I want a bar chart custom visual with colors from the report theme. What should I do?"*
+
+A working install mentions `pbiviz`, `capabilities.json`, `dataRoles`, `IVisual.update`, and `host.colorPalette`.
+
+| Problem | Fix |
+| --- | --- |
+| Skill not listed | Restart the agent; check the folder is `<skills-dir>/powerbi-visuals/SKILL.md` |
+| Folder named differently | Rename it to `powerbi-visuals` |
+| Links to references fail | Keep `references/` and `examples/` beside `SKILL.md` |
+| Can ChatGPT use it? | Yes — upload `SKILL.md` + `references/` into a project or custom GPT knowledge |
+
+For contributors:
+
+```bash
+node scripts/validate.mjs
+```
+
+This checks frontmatter, name/directory match, description length, reference links, and version consistency. Trigger prompts are in `evals/triggers/prompts.json`.
 
 ---
 
 ## Update or remove
 
-```powershell
+```bash
 git pull
-.\install.ps1         # copies new files over the old ones
+npx skills add rsshethia/pbviz-skills      # or rerun your installer
 ```
 
-Remove by deleting the installed `powerbi-visuals` folder.
+Remove by deleting the installed `powerbi-visuals` folder, or `npx skills remove powerbi-visuals`.
 
 ---
 

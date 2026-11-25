@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-# Installs this repo as an Agent Skill named "powerbi-visuals".
+# Installs the powerbi-visuals skill from skills/powerbi-visuals into a skills directory.
 set -euo pipefail
 
 TARGET="${1:-claude-personal}"
 NAME="powerbi-visuals"
-SOURCE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SOURCE="$REPO/skills/$NAME"
 
 case "$TARGET" in
   claude-personal) DEST="$HOME/.claude/skills/$NAME" ;;
   claude-project)  DEST="$PWD/.claude/skills/$NAME" ;;
+  agents-project)  DEST="$PWD/.agents/skills/$NAME" ;;
   custom)
     if [ -z "${2:-}" ]; then
       echo "Usage: ./install.sh custom /path/to/your/skills/$NAME" >&2
@@ -18,15 +20,18 @@ case "$TARGET" in
     ;;
   *)
     echo "Unknown target: $TARGET" >&2
-    echo "Choose: claude-personal | claude-project | custom" >&2
+    echo "Choose: claude-personal | claude-project | agents-project | custom" >&2
     exit 1
     ;;
 esac
 
+if [ ! -d "$SOURCE" ]; then
+  echo "Skill source not found: $SOURCE" >&2
+  exit 1
+fi
+
 mkdir -p "$DEST"
 cp -R "$SOURCE"/. "$DEST"/
-rm -rf "$DEST/.git"
-
 echo "Installed '$NAME' skill at:"
 echo "  $DEST"
 echo "Restart your agent so it discovers the skill."

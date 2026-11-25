@@ -1,0 +1,19 @@
+{
+  "name": "pbviz-skills",
+  "owner": {
+    "name": "Rushabh Shethia",
+    "url": "https://github.com/rsshethia"
+  },
+  "metadata": {
+    "description": "Power BI custom visuals skill for AI agents",
+    "version": "1.0.0",
+    "repository": "https://github.com/rsshethia/pbviz-skills"
+  },
+  "plugins": [
+    {
+      "name": "powerbi-visuals",
+      "description": "Build, debug, bind data for, style, and publish Power BI custom visuals with an AI agent",
+      "source": "./"
+    }
+  ]
+}

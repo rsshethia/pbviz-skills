@@ -1,0 +1,41 @@
+{
+  "_comment": "Small trigger set. Direct prompts should load powerbi-visuals; near-miss and unrelated should not. Keep held-out prompts unread while changing the description.",
+  "prompts": [
+    {
+      "id": "direct-1",
+      "type": "direct",
+      "prompt": "Build a bar chart custom visual for Power BI with colors from the report theme.",
+      "expect": "powerbi-visuals"
+    },
+    {
+      "id": "direct-2",
+      "type": "direct",
+      "prompt": "Help me publish my pbiviz package to AppSource and get it certified.",
+      "expect": "powerbi-visuals"
+    },
+    {
+      "id": "indirect-1",
+      "type": "judgement",
+      "prompt": "My custom visual shows blank. Which data mapping should I use and why don't my fields appear?",
+      "expect": "powerbi-visuals"
+    },
+    {
+      "id": "indirect-2",
+      "type": "advice",
+      "prompt": "Is it worth adding React to my custom visual, or should I stay with d3?",
+      "expect": "powerbi-visuals"
+    },
+    {
+      "id": "near-miss",
+      "type": "near-miss",
+      "prompt": "I want to build a report page using Power BI's built-in bar chart and a DAX measure. How should I set it up?",
+      "expect": "none"
+    },
+    {
+      "id": "unrelated",
+      "type": "unrelated",
+      "prompt": "Write a cold email to a prospect about our analytics service.",
+      "expect": "none"
+    }
+  ]
+}
