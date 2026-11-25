@@ -18,6 +18,14 @@ A Power BI custom visual is a sandboxed TypeScript/JavaScript component that run
 
 Not for: building reports with built-in visuals, DAX/Power Query modeling, or embedding reports in apps (unless the question concerns a custom visual inside them).
 
+## How an agent should use this skill
+
+1. Load the full file when the frontmatter description matches the request, or when the user explicitly says "use the powerbi-visuals skill".
+2. Follow the workflow below in order — do not skip the principles gate or the data contract gate.
+3. Open only the `references/` file needed for the current step; do not load everything at once.
+4. Treat files in `examples/` as skeletons to adapt, not finished code.
+5. Verify API names and version-gated features against `powerbi-visuals-api` and Microsoft Learn before recommending them.
+
 ## Quick start
 
 ```bash
