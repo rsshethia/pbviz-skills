@@ -236,4 +236,6 @@ Every formatting model property descriptor must reference an object/property pai
 - `supportsSynchronizingFilterState`: slicer sync.
 - `advancedEditModeSupport`: 0/1/2, used with `editMode` in `VisualUpdateOptions`.
 
+For the judgment layer behind these mechanics — contract design, the view-model boundary, identity, selector scopes, honest reduction, and empty states — see [data-binding-principles.md](data-binding-principles.md). For implementation recipes, see [data-binding-patterns.md](data-binding-patterns.md).
+
 Sources: [Capabilities and properties](https://learn.microsoft.com/en-us/power-bi/developer/visuals/capabilities), [Data view mappings](https://learn.microsoft.com/en-us/power-bi/developer/visuals/dataview-mappings), [Objects and properties](https://learn.microsoft.com/en-us/power-bi/developer/visuals/objects-properties).

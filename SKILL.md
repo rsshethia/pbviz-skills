@@ -51,6 +51,9 @@ Read the relevant reference before acting. Each file is self-contained and inclu
 | [debugging-testing-validation.md](references/debugging-testing-validation.md) | Dev server, certs, DevTools debugging, common errors, validation/certification audits, performance |
 | [packaging-publishing-certification.md](references/packaging-publishing-certification.md) | `pbiviz package`, AppSource assets and metadata, free vs IAP, licensing, logos, watermarks, certification requirements |
 | [reference-map-and-pitfalls.md](references/reference-map-and-pitfalls.md) | Curated Learn links, repo topology, glossary, common invariants and failure modes |
+| [data-binding-principles.md](references/data-binding-principles.md) | Data contract, view-model boundary, identity, selectors, highlights, honest reduction, empty states |
+| [data-binding-patterns.md](references/data-binding-patterns.md) | Copy-paste transforms for each mapping, selection builders, format strings, sorting, segmented fetch |
+| [future-and-decision-design.md](references/future-and-decision-design.md) | Decision-oriented design, Shneiderman interaction, color that adds value, one visual across screen sizes |
 
 ### UI references (start here for appearance and feel)
 
@@ -64,11 +67,12 @@ Read the relevant reference before acting. Each file is self-contained and inclu
 | [data-visualization-principles.md](references/data-visualization-principles.md) | Chart selection, perceptual encoding, graphical integrity, honest data reduction, context |
 | [ai-agent-library-playbook.md](references/ai-agent-library-playbook.md) | Evidence hierarchy, verified package names, d3/React choices, and a self-verification loop for LLMs |
 
-Copyable starting point: [examples/ui-starter/](examples/ui-starter/README.md) — SVG bar chart skeleton with theming, selection, tooltip, context menu, keyboard focus, and resize-aware updates.
+Copyable starting points: [examples/ui-starter/](examples/ui-starter/README.md) — SVG bar chart skeleton with theming, selection, tooltip, context menu, keyboard focus, and resize-aware updates; [examples/data-binding/](examples/data-binding/README.md) — `viewmodel.ts` skeleton with guarded transforms, stable selection IDs, highlights, and dynamic format strings.
 
 ## Workflow at a glance
 
 0. **Principles gate** — before choosing a chart type, identify the reader's question and the encoding that answers it. Apply [data-visualization-principles.md](references/data-visualization-principles.md): position over angle/area, honest baselines, disclosed data reduction, color used sparingly, context for every value.
+0.5. **Data contract gate** — decide the mapping, conditions, view-model shape, identity, selector scopes, highlight behavior, and data-reduction disclosure before touching rendering code. Apply [data-binding-principles.md](references/data-binding-principles.md).
 1. **Confirm the API version** in `pbiviz.json` before using a version-gated feature.
 2. **Declare** data roles, mappings, objects, and feature flags in `capabilities.json`.
 3. **Implement** the `IVisual` class: create DOM once in the constructor, re-render from `options.dataViews[0]` in `update`, clean up in `destroy`.

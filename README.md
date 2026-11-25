@@ -35,6 +35,10 @@ Think of this folder as a **cheat sheet for an AI helper**. If you ask an AI to 
 | `examples/ui-starter/` | A small starter you can copy and edit instead of starting from zero. |
 | `references/data-visualization-principles.md` | How to choose the right chart and show data honestly (the "experience" layer). |
 | `references/ai-agent-library-playbook.md` | Which libraries and official sources an AI should trust, and what to avoid. |
+| `references/data-binding-principles.md` | How to think about the data contract, identity, settings, and honest data limits. |
+| `references/data-binding-patterns.md` | Ready-to-adapt code for reading each kind of data Power BI sends. |
+| `examples/data-binding/` | A copyable view-model file that keeps data code separate from drawing code. |
+| `references/future-and-decision-design.md` | Making visuals help people decide, use color well, and work on any screen size. |
 
 ## How to use it
 

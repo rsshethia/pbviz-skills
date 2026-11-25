@@ -180,4 +180,6 @@ Called when the visual is unloaded; remove listeners/timers there. Note the host
 - Use `textContent` / `text()` for user-provided strings. Never pass data into `innerHTML` or `d3.html()` — certification rejects it and it is an XSS risk.
 - Support the Rendering Events API (`host.eventService`) so the host knows when rendering starts/finishes; certified visuals must support it.
 
+For the data side of `update()` — guarded transforms, identity, highlights, and segmented fetch — see [data-binding-patterns.md](data-binding-patterns.md) and [data-binding-principles.md](data-binding-principles.md).
+
 Sources: [Visual API](https://learn.microsoft.com/en-us/power-bi/developer/visuals/visual-api), [Objects and properties](https://learn.microsoft.com/en-us/power-bi/developer/visuals/objects-properties), [powerbi-visuals-api on GitHub](https://github.com/microsoft/powerbi-visuals-api).
