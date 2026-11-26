@@ -2,7 +2,7 @@
 name: powerbi-visuals
 description: "Use when the user wants to build, debug, bind data for, improve, package, or publish a Power BI custom visual, or asks why the visual is blank, which data mapping to use, how to theme it, or whether it will pass certification. Verify API names against powerbi-visuals-api and check apiVersion before version-gated features. For reports using built-in visuals or DAX, this skill does not apply."
 metadata:
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Power BI Custom Visuals
@@ -73,8 +73,11 @@ Read the relevant reference before acting. Each is self-contained, with API-vers
 | "How do I handle resize, small screens, and performance?" | [ui-responsive-and-performance.md](references/ui-responsive-and-performance.md) |
 | "Is my visual accessible to keyboard and screen-reader users?" | [ui-accessibility-checklist.md](references/ui-accessibility-checklist.md) |
 | "As an AI, which libraries and package names should I trust?" | [ai-agent-library-playbook.md](references/ai-agent-library-playbook.md) |
+| "I have a sketch, photo, or mockup of the visual I want." | [sketch-to-visual.md](references/sketch-to-visual.md) |
+| "I want a donut, rose chart, sankey, chord, or another unusual chart." | [bespoke-chart-patterns.md](references/bespoke-chart-patterns.md) |
+| "Can I build a totally bespoke shape instead of a standard chart?" | [bespoke-chart-patterns.md](references/bespoke-chart-patterns.md) |
 
-Copyable starting points: [examples/ui-starter/](examples/ui-starter/README.md) — SVG bar chart with theming, selection, tooltip, context menu, keyboard focus, resize-aware updates; [examples/data-binding/](examples/data-binding/README.md) — `viewmodel.ts` with guarded transforms, stable selection IDs, highlights, and dynamic format strings.
+Copyable starting points: [examples/ui-starter/](examples/ui-starter/README.md) — SVG bar chart with theming, selection, tooltip, context menu, keyboard focus, resize-aware updates; [examples/data-binding/](examples/data-binding/README.md) — `viewmodel.ts` with guarded transforms, stable selection IDs, highlights, and dynamic format strings; [examples/bespoke-chart/](examples/bespoke-chart/README.md) — donut with center KPI built with `d3-shape`.
 
 ## Workflow at a glance
 

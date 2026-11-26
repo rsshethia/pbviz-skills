@@ -1,7 +1,7 @@
 {
   "name": "powerbi-visuals",
   "description": "Agent skill for building, debugging, and publishing Power BI custom visuals: pbiviz setup, capabilities, data binding, UI, accessibility, and AppSource certification",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Rushabh Shethia"
   },

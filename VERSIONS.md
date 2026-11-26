@@ -1,18 +1,23 @@
 # Versions
 
-Repo release version: **1.0.0** — shared by `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and `.codex-plugin/plugin.json`.
+Repo release version: **1.0.1** — shared by `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and `.codex-plugin/plugin.json`.
 
 ## Skills
 
 | Skill | Version |
 | --- | --- |
-| powerbi-visuals | 1.0.0 |
+| powerbi-visuals | 1.0.1 |
 
 ## Version rules
 
 - **Repo version `x.y.z`**: `x` for restructures or breaking changes, `y` for a new skill, `z` for content updates to an existing skill.
 - **Skill version**: lives in `SKILL.md` frontmatter under `metadata.version` and is mirrored above. Bump it on every shipped change to that skill; installed users are not notified otherwise.
 - Keep `metadata.version`, all three plugin manifests, and the newest `### x.y.z` block in this file in sync.
+
+## 1.0.1
+
+- Added sketch-to-visual intake protocol and bespoke chart patterns (d3 module map, pie family, hardening).
+- Added donut-with-center-KPI example skeleton.
 
 ## 1.0.0
 

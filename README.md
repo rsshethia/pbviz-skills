@@ -2,7 +2,7 @@
 
 **A ready-to-install Agent Skill that teaches any AI to build, debug, bind data for, style, and publish Power BI custom visuals.** It works with Claude Code, ChatGPT/Codex, Cursor, Windsurf, and any agent that supports the [Agent Skills spec](https://agentskills.io/specification.md).
 
-Repo: <https://github.com/rsshethia/pbviz-skills> · License: MIT · Last updated: 2026-11-25
+Repo: <https://github.com/rsshethia/pbviz-skills> · License: MIT · Last updated: 2026-11-27
 
 ---
 
@@ -11,7 +11,7 @@ Repo: <https://github.com/rsshethia/pbviz-skills> · License: MIT · Last update
 - **Fewer wrong answers.** It tells the agent to verify API names against `powerbi-visuals-api` and check `apiVersion` before using a version-gated feature.
 - **The full workflow.** Project setup, `capabilities.json`, data binding, `IVisual` lifecycle, formatting model, interactions, accessibility, publishing.
 - **Judgment, not just mechanics.** Chart choice, honest data reduction, color that adds value, and how to make a visual decision-ready at any screen size.
-- **18 reference notes and two copyable skeletons** the agent opens only when needed.
+- **20 reference notes and three copyable skeletons** the agent opens only when needed.
 
 ---
 
@@ -147,8 +147,8 @@ Keep the folder intact: `SKILL.md` uses relative links to `references/` and `exa
 pbviz-skills/
 ├── skills/powerbi-visuals/
 │   ├── SKILL.md                  # entry point
-│   ├── references/               # 18 detailed notes
-│   ├── examples/                 # ui-starter + data-binding skeletons
+│   ├── references/               # 20 detailed notes
+│   ├── examples/                 # ui-starter, data-binding, bespoke-chart skeletons
 │   └── evals/triggers/prompts.json
 ├── .claude-plugin/               # Claude Code plugin + marketplace
 ├── .codex-plugin/                # Codex plugin
@@ -182,6 +182,8 @@ pbviz-skills/
 | `data-binding-patterns.md` | Code for each data shape. |
 | `future-and-decision-design.md` | Decisions, color, multiple screens. |
 | `ai-agent-library-playbook.md` | Libraries and sources an AI should trust. |
+| `sketch-to-visual.md` | Turning a sketch or photo into a real visual. |
+| `bespoke-chart-patterns.md` | Donuts, radial charts, sankey, networks, custom shapes. |
 
 ---
 

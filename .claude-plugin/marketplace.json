@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Power BI custom visuals skill for AI agents",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "repository": "https://github.com/rsshethia/pbviz-skills"
   },
   "plugins": [
